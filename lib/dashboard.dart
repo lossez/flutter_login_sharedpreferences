@@ -11,7 +11,6 @@ class dashboard extends StatefulWidget {
 class _dashboardState extends State<dashboard> {
   var data;
   var firstName;
-  String mystring = "the quick brown fox";
 
   void getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -22,7 +21,7 @@ class _dashboardState extends State<dashboard> {
           data = element;
           var getName = element['FullName'];
           var newString = getName.toString().split(" ").toList();
-          firstName = newString;
+          firstName = newString[0];
         });
       }
     });
@@ -49,7 +48,7 @@ class _dashboardState extends State<dashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Hai, " + firstName[0],
+          "Hai, ${firstName}",
           style: TextStyle(fontSize: 14, color: Colors.black),
         ),
         actions: [
@@ -117,12 +116,12 @@ class _dashboardState extends State<dashboard> {
                           Icons.person_outline,
                           size: 20,
                         ),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Text("My Profile")
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(13, 0, 13, 10),
